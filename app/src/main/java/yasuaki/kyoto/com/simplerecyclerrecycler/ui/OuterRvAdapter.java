@@ -43,12 +43,16 @@ public class OuterRvAdapter extends
   @Override
   public void onBindViewHolder(OuterRvViewHolder holder, int position) {
 
+    final int clickedCharacterColor;
+
     SubjectCharacter character = mCharacters.get(position);
-    holder.characterFrameView.setCharacterCircleImg(character.getCircle());
-    holder.characterFrameView.setCharacterBodyImg(character.getBody());
-    holder.characterFrameView.setCharacterEyeImg(character.getEye());
-    holder.characterFrameView.setCharacterMouseImg(character.getMouse());
-    holder.characterFrameView.setCircleColor(mContext.getResources().getColor(Utility.getRandomColorInt()));
+    holder.characterFrameView.setCharacterCircleImg(character.getProfile().getCircle());
+    holder.characterFrameView.setCharacterBodyImg(character.getProfile().getBody());
+    holder.characterFrameView.setCharacterEyeImg(character.getProfile().getEye());
+    holder.characterFrameView.setCharacterMouseImg(character.getProfile().getMouse());
+
+    clickedCharacterColor = Utility.getRandomColorInt();
+    holder.characterFrameView.setCircleColor(clickedCharacterColor);
 
   }
 
@@ -67,9 +71,9 @@ public class OuterRvAdapter extends
 
   // 4/4: innerRv のコールバックを実装
   @Override
-  public void onCharacterClicked(int clickedCharacterColor) {
+  public void onCharacterClicked(SubjectCharacter subjectCharacter) {
     if (mInRvClickedCallbackRelay != null) {
-      mInRvClickedCallbackRelay.onCharacterClicked(clickedCharacterColor);
+      mInRvClickedCallbackRelay.onCharacterClicked(subjectCharacter);
     }
   }
 
@@ -82,7 +86,7 @@ public class OuterRvAdapter extends
   /**************************************************************/
   class OuterRvViewHolder extends RecyclerView.ViewHolder {
 
-    @BindView(R.id.subject_character)
+    @BindView(R.id.outer_subject_character)
     CharacterFrameView characterFrameView;
 
     private InnerRvAdapter mInnerRvAdapter;
@@ -112,6 +116,6 @@ public class OuterRvAdapter extends
    * 2/4: Inner RecyclerView のクリックListener の結果を Activity に送るための インターフェイス
    */
   interface InRvClickedCallbackRelay {
-    void onCharacterClicked(int clickedCharacterColor);
+    void onCharacterClicked(SubjectCharacter subjectCharacter);
   }
 }

@@ -6,14 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import java.util.ArrayList;
 import java.util.List;
 import yasuaki.kyoto.com.simplerecyclerrecycler.R;
-import yasuaki.kyoto.com.simplerecyclerrecycler.utility.Utility;
 import yasuaki.kyoto.com.simplerecyclerrecycler.data.model.SubjectCharacter;
+import yasuaki.kyoto.com.simplerecyclerrecycler.ui.widget.CharacterFrameView;
 
 public class InnerRvAdapter extends RecyclerView.Adapter<InnerRvAdapter.SubjectViewHolder>{
 
@@ -36,23 +35,19 @@ public class InnerRvAdapter extends RecyclerView.Adapter<InnerRvAdapter.SubjectV
   @Override
   public void onBindViewHolder(SubjectViewHolder holder, int position) {
 
-    final int clickedCharacterColor;
-
-    SubjectCharacter character = mCharacters.get(position);
-    holder.subjectCircle.setImageResource(character.getCircle());
-    holder.subjectBody.setImageResource(character.getBody());
-    holder.subjectEye.setImageResource(character.getEye());
-    holder.subjectMouse.setImageResource(character.getMouse());
-
-    clickedCharacterColor = Utility.getRandomColorInt();
-    holder.subjectCircle.setColorFilter(mContext.getResources().getColor(clickedCharacterColor));
+    final SubjectCharacter character = mCharacters.get(position);
+    holder.characterFrameView.setCharacterCircleImg(character.getProfile().getCircle());
+    holder.characterFrameView.setCharacterBodyImg(character.getProfile().getBody());
+    holder.characterFrameView.setCharacterEyeImg(character.getProfile().getEye());
+    holder.characterFrameView.setCharacterMouseImg(character.getProfile().getMouse());
+    holder.characterFrameView.setCircleColor(character.getProfile().getBackgroundColor());
 
     // 3/3:クリックListenerを該当 View にセット
-    holder.subjectCircle.setOnClickListener(new OnClickListener() {
+    holder.characterFrameView.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
         if(mInRvClickedCallback != null){
-          mInRvClickedCallback.onCharacterClicked(clickedCharacterColor);
+          mInRvClickedCallback.onCharacterClicked(character);
         }
       }
     });
@@ -75,11 +70,8 @@ public class InnerRvAdapter extends RecyclerView.Adapter<InnerRvAdapter.SubjectV
   /*********************** SubjectViewHolder ****************************/
   class SubjectViewHolder extends RecyclerView.ViewHolder{
 
-    @BindView(R.id.subject_circle)
-    ImageView subjectCircle;
-    @BindView(R.id.subject_body)  ImageView subjectBody;
-    @BindView(R.id.subject_eye)  ImageView subjectEye;
-    @BindView(R.id.subject_mouse)  ImageView subjectMouse;
+    @BindView(R.id.inner_subject_character)
+    CharacterFrameView characterFrameView;
 
     public SubjectViewHolder(View itemView) {
       super(itemView);
@@ -90,6 +82,6 @@ public class InnerRvAdapter extends RecyclerView.Adapter<InnerRvAdapter.SubjectV
   /*************** InRvClickedCallback ********************/
   // 1/3:インターフェイス を定義
   interface InRvClickedCallback {
-    void onCharacterClicked(int clickedCharacterColor);
+    void onCharacterClicked(SubjectCharacter subjectCharacter);
   }
 }

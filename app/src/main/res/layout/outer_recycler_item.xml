@@ -6,9 +6,8 @@
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   android:orientation="horizontal">
-
-  <banbutsu.kyoto.com.ruten.ui.widget.CharacterFrameView
-    android:id="@+id/subject_character"
+  <yasuaki.kyoto.com.simplerecyclerrecycler.ui.widget.CharacterFrameView
+    android:id="@+id/outer_subject_character"
     android:layout_width="@dimen/img_character_normal"
     android:layout_height="@dimen/img_character_normal"
     android:layout_marginTop="8dp"

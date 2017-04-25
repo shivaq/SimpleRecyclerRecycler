@@ -2,40 +2,16 @@ package yasuaki.kyoto.com.simplerecyclerrecycler.data.model;
 
 public class SubjectCharacter {
 
-  private int mCircle;
-  private int mBody;
-  private int mEye;
-  private int mMouse;
+  private Profile mProfile;
 
-  public int getCircle() {
-    return mCircle;
+  public SubjectCharacter() {
   }
 
-  public void setCircle(int circle) {
-    mCircle = circle;
+  public Profile getProfile() {
+    return mProfile;
   }
 
-  public int getBody() {
-    return mBody;
-  }
-
-  public void setBody(int body) {
-    mBody = body;
-  }
-
-  public int getEye() {
-    return mEye;
-  }
-
-  public void setEye(int eye) {
-    mEye = eye;
-  }
-
-  public int getMouse() {
-    return mMouse;
-  }
-
-  public void setMouse(int mouse) {
-    mMouse = mouse;
+  public void setProfile(Profile profile) {
+    mProfile = profile;
   }
 }

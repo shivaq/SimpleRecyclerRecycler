@@ -54,12 +54,12 @@
       ads:layout_constraintHorizontal_bias="0.333"
       ads:layout_constraintLeft_toLeftOf="@+id/target_character"
       ads:layout_constraintRight_toRightOf="@+id/target_character"
-      ads:layout_constraintTop_toBottomOf="@+id/recycler_subject"
+      ads:layout_constraintTop_toBottomOf="@+id/outer_recycler"
       ads:layout_constraintVertical_bias="1.0"
       tools:text="It's her!"
       ads:layout_constraintBottom_toBottomOf="parent"/>
     <android.support.v7.widget.RecyclerView
-      android:id="@+id/recycler_subject"
+      android:id="@+id/outer_recycler"
       android:layout_width="0dp"
       android:layout_height="240dp"
       android:layout_marginTop="8dp"

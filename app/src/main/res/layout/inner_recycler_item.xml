@@ -1,32 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-  android:id="@+id/inner_item"
+<yasuaki.kyoto.com.simplerecyclerrecycler.ui.widget.CharacterFrameView
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
-  android:orientation="vertical"
-  android:layout_width="50dp"
-  android:layout_height="50dp">
-  <ImageView
-    android:id="@+id/subject_circle"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:srcCompat="@drawable/ic_magician_circle"/>
-
-  <ImageView
-    android:id="@+id/subject_body"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:srcCompat="@drawable/ic_magician_body"/>
-
-  <ImageView
-    android:id="@+id/subject_eye"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:srcCompat="@drawable/ic_magician_eye_maru"/>
-
-  <ImageView
-    android:id="@+id/subject_mouse"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:srcCompat="@drawable/ic_magician_mouse_smile"/>
-</FrameLayout>
+  android:id="@+id/inner_subject_character"
+  android:layout_width="@dimen/img_character_normal"
+  android:layout_height="@dimen/img_character_normal"
+  android:layout_marginTop="8dp"
+  android:layout_marginBottom="8dp"
+  android:layout_marginRight="32dp"
+  android:background="?attr/selectableItemBackgroundBorderless"
+  android:clickable="true"
+  app:character_body="@drawable/ic_magician_body"
+  app:character_circle="@drawable/ic_magician_circle"
+  app:character_eye="@drawable/ic_magician_eye_maru"
+  app:character_mouse="@drawable/ic_magician_mouse_smile"
+  app:layout_constraintBottom_toTopOf="@+id/adView"
+  app:layout_constraintHorizontal_bias="1.0"
+  app:layout_constraintLeft_toLeftOf="parent"
+  app:layout_constraintRight_toRightOf="parent"
+  app:layout_constraintTop_toTopOf="parent"
+  app:layout_constraintVertical_bias="0.100000024"/>

@@ -2,57 +2,85 @@ package yasuaki.kyoto.com.simplerecyclerrecycler.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-
-import javax.inject.Inject;
-
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.widget.TextView;
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import timber.log.Timber;
+import javax.inject.Inject;
 import yasuaki.kyoto.com.simplerecyclerrecycler.MvpApplication;
 import yasuaki.kyoto.com.simplerecyclerrecycler.R;
+import yasuaki.kyoto.com.simplerecyclerrecycler.data.model.SubjectCharacter;
 import yasuaki.kyoto.com.simplerecyclerrecycler.di.component.ActivityComponent;
 import yasuaki.kyoto.com.simplerecyclerrecycler.di.component.DaggerActivityComponent;
 import yasuaki.kyoto.com.simplerecyclerrecycler.di.module.ActivityModule;
+import yasuaki.kyoto.com.simplerecyclerrecycler.ui.OuterRvAdapter.InRvClickedCallbackRelay;
+import yasuaki.kyoto.com.simplerecyclerrecycler.ui.widget.CharacterFrameView;
+import yasuaki.kyoto.com.simplerecyclerrecycler.utility.Utility;
 
-public class MainActivity extends AppCompatActivity implements MvpView{
+public class MainActivity extends AppCompatActivity implements MvpView, InRvClickedCallbackRelay {
 
-    /**
-     * フィールドでアカシックレコードに手を伸ばせば、onCreate 前にそれを手にできる。
-     */
-    @Inject
-    MvpPresenter<MvpView> mPresenter;
 
-    /**
-     * 下記のように、契約者が俺がガンダムだ、をしても、フィールドで手を伸ばさない限り、
-     * onCreate の段階で mPresenter はnull。
-     */
-//    @Inject
-//    public MainActivity(MvpPresenter<MvpView> mainPresenter) {
-//        mPresenter = mainPresenter;
-//    }
+  @Inject
+  MvpPresenter<MvpView> mPresenter;
 
-    public MainActivity(){}
+  @BindView(R.id.outer_recycler)
+  RecyclerView outerRv;
+  @BindView(R.id.subject_character)
+  CharacterFrameView subjectCharacterView;
+  @BindView(R.id.txt_subject_character)
+  TextView txtSubjectCharacter;
 
-    private ActivityComponent mActivityComponent;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+  public MainActivity() {
+  }
 
-        // 契約者は、魔法陣でメフィストフェレスと契約を結ぶ
-        mActivityComponent = DaggerActivityComponent.builder()
-                .activityModule(new ActivityModule(this))
-                .applicationComponent(((MvpApplication) getApplication()).getComponent())
-                .build();
+  private ActivityComponent mActivityComponent;
 
-        getActivityComponent().inject(this);// エロイム、エッサイム、我は求め訴えたり！
-        mPresenter.onAttachView(this);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    ButterKnife.bind(this);
 
-        Timber.d("MainActivity:onCreate: unko");
-    }
+    // 契約者は、魔法陣でメフィストフェレスと契約を結ぶ
+    mActivityComponent = DaggerActivityComponent.builder()
+        .activityModule(new ActivityModule(this))
+        .applicationComponent(((MvpApplication) getApplication()).getComponent())
+        .build();
 
-    public ActivityComponent getActivityComponent() {
-        return mActivityComponent;
-    }
+    getActivityComponent().inject(this);// エロイム、エッサイム、我は求め訴えたり！
+    mPresenter.onAttachView(this);
+
+    LinearLayoutManager outerLayoutManager
+        = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+    outerRv.setLayoutManager(outerLayoutManager);
+    outerRv.setHasFixedSize(true);
+
+    OuterRvAdapter outerRvAdapter = new OuterRvAdapter();
+    // Callback に自身を登録
+    outerRvAdapter.registerInRvClickedCallbackRelay(this);
+    outerRv.setAdapter(outerRvAdapter);
+    outerRvAdapter.setCharacterList(Utility.createDummyCharacters(6));
+    outerRvAdapter.setInnerCharacterListSize(9);
+
+  }
+
+  public ActivityComponent getActivityComponent() {
+    return mActivityComponent;
+  }
+
+  private void setSubjectCharacter(SubjectCharacter subjectCharacter){
+    subjectCharacterView.setCharacterCircleImg(subjectCharacter.getProfile().getCircle());
+    subjectCharacterView.setCharacterBodyImg(subjectCharacter.getProfile().getBody());
+    subjectCharacterView.setCharacterEyeImg(subjectCharacter.getProfile().getEye());
+    subjectCharacterView.setCharacterMouseImg(subjectCharacter.getProfile().getMouse());
+    subjectCharacterView.setCircleColor(subjectCharacter.getProfile().getBackgroundColor());
+    txtSubjectCharacter.setText("It's " + subjectCharacter.getProfile().getName());
+  }
+
+  @Override
+  public void onCharacterClicked(SubjectCharacter subjectCharacter) {
+    setSubjectCharacter(subjectCharacter);
+  }
 }
