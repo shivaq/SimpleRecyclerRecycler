@@ -9,7 +9,7 @@ public class Profile {
   private long creationTime;
   private String name;
   private int circle;
-  private int backgroundColor;
+  private int circleColor;
   private int body;
   private int eye;
   private int mouse;
@@ -81,11 +81,11 @@ public class Profile {
     this.creationTime = creationTime;
   }
 
-  public int getBackgroundColor() {
-    return backgroundColor;
+  public int getCircleColor() {
+    return circleColor;
   }
 
-  public void setBackgroundColor(int backgroundColor) {
-    this.backgroundColor = backgroundColor;
+  public void setCircleColor(int circleColor) {
+    this.circleColor = circleColor;
   }
 }

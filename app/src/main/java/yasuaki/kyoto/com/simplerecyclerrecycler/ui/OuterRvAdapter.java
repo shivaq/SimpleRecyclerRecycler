@@ -43,16 +43,8 @@ public class OuterRvAdapter extends
   @Override
   public void onBindViewHolder(OuterRvViewHolder holder, int position) {
 
-    final int clickedCharacterColor;
-
     SubjectCharacter character = mCharacters.get(position);
-    holder.characterFrameView.setCharacterCircleImg(character.getProfile().getCircle());
-    holder.characterFrameView.setCharacterBodyImg(character.getProfile().getBody());
-    holder.characterFrameView.setCharacterEyeImg(character.getProfile().getEye());
-    holder.characterFrameView.setCharacterMouseImg(character.getProfile().getMouse());
-
-    clickedCharacterColor = Utility.getRandomColorInt();
-    holder.characterFrameView.setCircleColor(clickedCharacterColor);
+    Utility.setCharacterViewAppearance(holder.characterFrameView, character);
 
   }
 

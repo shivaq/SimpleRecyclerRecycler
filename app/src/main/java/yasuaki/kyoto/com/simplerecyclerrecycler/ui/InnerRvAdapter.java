@@ -13,6 +13,7 @@ import java.util.List;
 import yasuaki.kyoto.com.simplerecyclerrecycler.R;
 import yasuaki.kyoto.com.simplerecyclerrecycler.data.model.SubjectCharacter;
 import yasuaki.kyoto.com.simplerecyclerrecycler.ui.widget.CharacterFrameView;
+import yasuaki.kyoto.com.simplerecyclerrecycler.utility.Utility;
 
 public class InnerRvAdapter extends RecyclerView.Adapter<InnerRvAdapter.SubjectViewHolder>{
 
@@ -36,11 +37,7 @@ public class InnerRvAdapter extends RecyclerView.Adapter<InnerRvAdapter.SubjectV
   public void onBindViewHolder(SubjectViewHolder holder, int position) {
 
     final SubjectCharacter character = mCharacters.get(position);
-    holder.characterFrameView.setCharacterCircleImg(character.getProfile().getCircle());
-    holder.characterFrameView.setCharacterBodyImg(character.getProfile().getBody());
-    holder.characterFrameView.setCharacterEyeImg(character.getProfile().getEye());
-    holder.characterFrameView.setCharacterMouseImg(character.getProfile().getMouse());
-    holder.characterFrameView.setCircleColor(character.getProfile().getBackgroundColor());
+    Utility.setCharacterViewAppearance(holder.characterFrameView, character);
 
     // 3/3:クリックListenerを該当 View にセット
     holder.characterFrameView.setOnClickListener(new OnClickListener() {

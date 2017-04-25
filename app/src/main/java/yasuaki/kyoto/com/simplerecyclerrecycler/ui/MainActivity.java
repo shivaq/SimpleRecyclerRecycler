@@ -71,14 +71,11 @@ public class MainActivity extends AppCompatActivity implements MvpView, InRvClic
   }
 
   private void setSubjectCharacter(SubjectCharacter subjectCharacter){
-    subjectCharacterView.setCharacterCircleImg(subjectCharacter.getProfile().getCircle());
-    subjectCharacterView.setCharacterBodyImg(subjectCharacter.getProfile().getBody());
-    subjectCharacterView.setCharacterEyeImg(subjectCharacter.getProfile().getEye());
-    subjectCharacterView.setCharacterMouseImg(subjectCharacter.getProfile().getMouse());
-    subjectCharacterView.setCircleColor(subjectCharacter.getProfile().getBackgroundColor());
+    Utility.setCharacterViewAppearance(subjectCharacterView, subjectCharacter);
     txtSubjectCharacter.setText("It's " + subjectCharacter.getProfile().getName());
   }
 
+  // InRvClickedCallbackRelay の実装
   @Override
   public void onCharacterClicked(SubjectCharacter subjectCharacter) {
     setSubjectCharacter(subjectCharacter);
