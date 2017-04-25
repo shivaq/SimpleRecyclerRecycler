@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="horizontal">
+
+  <banbutsu.kyoto.com.ruten.ui.widget.CharacterFrameView
+    android:id="@+id/subject_character"
+    android:layout_width="@dimen/img_character_normal"
+    android:layout_height="@dimen/img_character_normal"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginRight="32dp"
+    android:background="?attr/selectableItemBackgroundBorderless"
+    android:clickable="true"
+    app:character_body="@drawable/ic_magician_body"
+    app:character_circle="@drawable/ic_magician_circle"
+    app:character_eye="@drawable/ic_magician_eye_maru"
+    app:character_mouse="@drawable/ic_magician_mouse_smile"
+    app:layout_constraintBottom_toTopOf="@+id/adView"
+    app:layout_constraintHorizontal_bias="1.0"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.100000024"/>
+
+  <!-- match_parent won't work in layout_height in inner RecyclerView-->
+  <android.support.v7.widget.RecyclerView
+    android:id="@+id/inner_recycler"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_weight="1"/>
+</LinearLayout>

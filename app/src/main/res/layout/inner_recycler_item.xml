@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+  android:id="@+id/inner_item"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:orientation="vertical"
+  android:layout_width="50dp"
+  android:layout_height="50dp">
+  <ImageView
+    android:id="@+id/subject_circle"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:srcCompat="@drawable/ic_magician_circle"/>
+
+  <ImageView
+    android:id="@+id/subject_body"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:srcCompat="@drawable/ic_magician_body"/>
+
+  <ImageView
+    android:id="@+id/subject_eye"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:srcCompat="@drawable/ic_magician_eye_maru"/>
+
+  <ImageView
+    android:id="@+id/subject_mouse"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:srcCompat="@drawable/ic_magician_mouse_smile"/>
+</FrameLayout>
