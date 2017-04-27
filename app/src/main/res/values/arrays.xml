@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <integer-array name="magician_images">
+    <item>@drawable/ic_magician_circle</item>
+    <item>@drawable/ic_magician_body</item>
+    <item>@drawable/ic_magician_eye_maru</item>
+    <item>@drawable/ic_magician_mouse_smile</item>
+  </integer-array>
+
+  <integer-array name="robot_images">
+    <item>@drawable/ic_robot_circle</item>
+    <item>@drawable/ic_robot_body</item>
+    <item>@drawable/null_drawable</item>
+    <item>@drawable/null_drawable</item>
+  </integer-array>
+</resources>

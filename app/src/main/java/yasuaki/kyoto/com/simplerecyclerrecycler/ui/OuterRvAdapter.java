@@ -11,11 +11,11 @@ import butterknife.ButterKnife;
 import java.util.ArrayList;
 import java.util.List;
 import timber.log.Timber;
-import yasuaki.kyoto.com.simplerecyclerrecycler.ui.InnerRvAdapter.InRvClickedCallback;
 import yasuaki.kyoto.com.simplerecyclerrecycler.R;
-import yasuaki.kyoto.com.simplerecyclerrecycler.utility.Utility;
 import yasuaki.kyoto.com.simplerecyclerrecycler.data.model.SubjectCharacter;
+import yasuaki.kyoto.com.simplerecyclerrecycler.ui.InnerRvAdapter.InRvClickedCallback;
 import yasuaki.kyoto.com.simplerecyclerrecycler.ui.widget.CharacterFrameView;
+import yasuaki.kyoto.com.simplerecyclerrecycler.utility.CharacterUtility;
 
 public class OuterRvAdapter extends
     RecyclerView.Adapter<OuterRvAdapter.OuterRvViewHolder> implements
@@ -44,8 +44,7 @@ public class OuterRvAdapter extends
   public void onBindViewHolder(OuterRvViewHolder holder, int position) {
 
     SubjectCharacter character = mCharacters.get(position);
-    Utility.setCharacterViewAppearance(holder.characterFrameView, character);
-
+    CharacterUtility.setCharacterViewAppearance(mContext, character, holder.characterFrameView);
   }
 
   @Override
@@ -65,7 +64,7 @@ public class OuterRvAdapter extends
   @Override
   public void onCharacterClicked(SubjectCharacter subjectCharacter) {
     if (mInRvClickedCallbackRelay != null) {
-      mInRvClickedCallbackRelay.onCharacterClicked(subjectCharacter);
+      mInRvClickedCallbackRelay.onCharacterListItemClicked(subjectCharacter);
     }
   }
 
@@ -90,7 +89,7 @@ public class OuterRvAdapter extends
 
       // Inner RecyclerView のための Adapter を定義
       mInnerRvAdapter = new InnerRvAdapter();
-      mInnerRvAdapter.setCharacters(Utility.createDummyCharacters(mInnerRvCharacterListSize));
+      mInnerRvAdapter.setCharacters(CharacterUtility.createDummyCharacters(mInnerRvCharacterListSize));
 
       // 1/4: InnerRv のコールバックに登録
       mInnerRvAdapter.registerInRvClickedCallback(OuterRvAdapter.this);
@@ -108,6 +107,6 @@ public class OuterRvAdapter extends
    * 2/4: Inner RecyclerView のクリックListener の結果を Activity に送るための インターフェイス
    */
   interface InRvClickedCallbackRelay {
-    void onCharacterClicked(SubjectCharacter subjectCharacter);
+    void onCharacterListItemClicked(SubjectCharacter subjectCharacter);
   }
 }

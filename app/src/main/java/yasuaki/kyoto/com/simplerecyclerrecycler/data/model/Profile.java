@@ -5,65 +5,19 @@ public class Profile {
   public Profile() {
   }
 
+  // kind of id
   private String id;
   private long creationTime;
   private String name;
-  private int circle;
-  private int circleColor;
-  private int body;
-  private int eye;
-  private int mouse;
 
-  private String mBio;
+  // kind of appearance
+  private int characterType;
+  private int circleColorId;
+  private int state;
 
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public String getBio() {
-    return mBio;
-  }
-
-  public void setBio(String bio) {
-    mBio = bio;
-  }
-
-  public int getCircle() {
-    return circle;
-  }
-
-  public void setCircle(int circle) {
-    this.circle = circle;
-  }
-
-  public int getBody() {
-    return body;
-  }
-
-  public void setBody(int body) {
-    this.body = body;
-  }
-
-  public int getEye() {
-    return eye;
-  }
-
-  public void setEye(int eye) {
-    this.eye = eye;
-  }
-
-  public int getMouse() {
-    return mouse;
-  }
-
-  public void setMouse(int mouse) {
-    this.mouse = mouse;
-  }
-
+  // kind of description
+  private String shortDescription;
+  private String biography;
 
   public String getId() {
     return id;
@@ -81,11 +35,51 @@ public class Profile {
     this.creationTime = creationTime;
   }
 
-  public int getCircleColor() {
-    return circleColor;
+  public String getName() {
+    return name;
   }
 
-  public void setCircleColor(int circleColor) {
-    this.circleColor = circleColor;
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public int getCharacterType() {
+    return characterType;
+  }
+
+  public void setCharacterType(int characterType) {
+    this.characterType = characterType;
+  }
+
+  public int getCircleColorId() {
+    return circleColorId;
+  }
+
+  public void setCircleColorId(int circleColorId) {
+    this.circleColorId = circleColorId;
+  }
+
+  public int getState() {
+    return state;
+  }
+
+  public void setState(int state) {
+    this.state = state;
+  }
+
+  public String getShortDescription() {
+    return shortDescription;
+  }
+
+  public void setShortDescription(String shortDescription) {
+    this.shortDescription = shortDescription;
+  }
+
+  public String getBiography() {
+    return biography;
+  }
+
+  public void setBiography(String biography) {
+    this.biography = biography;
   }
 }
