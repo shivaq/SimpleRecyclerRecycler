@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements MvpView, InRvClic
         = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
     outerRv.setLayoutManager(outerLayoutManager);
     outerRv.setHasFixedSize(true);
+    outerRv.addItemDecoration(new RvDividerItemDecoration(this));
 
     OuterRvAdapter outerRvAdapter = new OuterRvAdapter();
     outerRvAdapter.registerInRvClickedCallbackRelay(this);

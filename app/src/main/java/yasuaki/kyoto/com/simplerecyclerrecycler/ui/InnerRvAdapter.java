@@ -20,10 +20,9 @@ public class InnerRvAdapter extends RecyclerView.Adapter<InnerRvAdapter.SubjectV
   /**
    * 2017/04/28
    * ★★ ViewType に応じて、アイテムのレイアウトを分岐させる機能追加
-   *
+   * https://enoent.fr/blog/2015/01/18/recyclerview-basics/
    *
    * */
-
 
   private List<SubjectCharacter> mCharacters;
   private Context mContext;
